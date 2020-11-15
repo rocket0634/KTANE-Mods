@@ -54,6 +54,7 @@ class Tweaks : MonoBehaviour
 	public void Awake()
 	{
 		Instance = this;
+		Patching.EnsurePatch("Random", typeof(RandomNextPatch), typeof(RandomRangePatch));
 
 		MainThreadQueue.Initialize();
 
@@ -812,6 +813,11 @@ class Tweaks : MonoBehaviour
 			Path.Combine(Application.persistentDataPath, "output_log_2.txt"),
 			true
 		);
+
+		if (Container.values.Count > 0)
+		{
+			Debug.Log(string.Join("\n", Container.values.ToArray()));
+		}
 	}
 
 	public static void FixRNGSeed()

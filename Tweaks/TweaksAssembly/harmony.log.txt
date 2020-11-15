@@ -1,0 +1,342 @@
+AccessTools.Method: Could not find method for type System.Exception and name PrepForRemoting and parameters 
+### Harmony id=samfundev.tweaks.DBML, version=2.0.1.0, location=C:\Program Files (x86)\Steam\steamapps\common\data-0000020EFDDFE050
+### Started from static System.Boolean TweaksAssembly.Patching.Patching::PatchClasses(System.String id, HarmonyLib.Harmony& instance, System.Type[] types), location C:\Program Files (x86)\Steam\steamapps\common\data-0000020EFDEADE60
+### At 2020-11-06 06.33.17
+### Patch: Bomb GameplayState::SpawnBomb(Assets.Scripts.Missions.GeneratorSetting generatorSetting, HoldableSpawnPoint spawnPoint, System.Int32 seed)
+### Replacement: static Bomb GameplayState::SpawnBomb_Patch1(GameplayState this, Assets.Scripts.Missions.GeneratorSetting generatorSetting, HoldableSpawnPoint spawnPoint, System.Int32 seed)
+IL_0000: Local var 0: Bomb
+IL_0000: Local var 1: Bomb
+IL_0000: Local var 2: System.Boolean
+IL_0000: ldnull
+IL_0001: stloc      1 (Bomb)
+IL_0005: ldc.i4     0
+IL_000A: stloc      2 (System.Boolean)
+IL_000E: ldc.i4.1
+IL_000F: stloc      2 (System.Boolean)
+IL_0013: ldloc      2 (System.Boolean)
+IL_0017: brfalse.s => Label1
+IL_0019: ldarg      1
+IL_001D: ldarg      2
+IL_0021: ldarg      3
+IL_0025: ldloca     1 (Bomb)
+IL_0029: call       static System.Boolean GameplayStatePatches::Prefix(Assets.Scripts.Missions.GeneratorSetting generatorSetting, HoldableSpawnPoint spawnPoint, System.Int32 seed, Bomb& __result)
+IL_002E: stloc      2 (System.Boolean)
+IL_0032: nop
+IL_0033: ldloc      2 (System.Boolean)
+IL_0037: brfalse => Label0
+IL_003C: // start original
+IL_003C: ldarg.0
+IL_003D: ldfld      BombGenerator GameplayState::bombGenerator
+IL_0042: ldarg.1
+IL_0043: ldarg.2
+IL_0044: ldarg.3
+IL_0045: ldc.i4.0
+IL_0046: callvirt   Bomb BombGenerator::CreateBomb(Assets.Scripts.Missions.GeneratorSetting settings, HoldableSpawnPoint spawn, System.Int32 seed, Assets.Scripts.Missions.BombTypeEnum bombType)
+IL_004B: stloc.0
+IL_004C: ldarg.0
+IL_004D: call       System.Collections.Generic.List`1<Bomb> GameplayState::get_Bombs()
+IL_0052: ldloc.0
+IL_0053: callvirt   virtual System.Void System.Collections.Generic.List`1<Bomb>::Add(Bomb item)
+IL_0058: ldloc.0
+IL_0059: // end original
+IL_0059: stloc      1 (Bomb)
+IL_005D: Label0
+IL_005D: ldloc      1 (Bomb)
+IL_0061: ret
+DONE
+
+### Patch: Bomb GameplayState::get_Bomb()
+### Replacement: static Bomb GameplayState::get_Bomb_Patch1(GameplayState this)
+IL_0000: Local var 0: Bomb
+IL_0000: Local var 1: System.Boolean
+IL_0000: ldnull
+IL_0001: stloc      0 (Bomb)
+IL_0005: ldc.i4     0
+IL_000A: stloc      1 (System.Boolean)
+IL_000E: ldc.i4.1
+IL_000F: stloc      1 (System.Boolean)
+IL_0013: ldloc      1 (System.Boolean)
+IL_0017: brfalse.s => Label1
+IL_0019: ldloca     0 (Bomb)
+IL_001D: call       static System.Boolean GameplayStatePatches::Prefix(Bomb& __result)
+IL_0022: stloc      1 (System.Boolean)
+IL_0026: nop
+IL_0027: ldloc      1 (System.Boolean)
+IL_002B: brfalse => Label0
+IL_0030: // start original
+IL_0030: ldarg.0
+IL_0031: call       System.Collections.Generic.List`1<Bomb> GameplayState::get_Bombs()
+IL_0036: brfalse => Label2
+IL_003B: ldarg.0
+IL_003C: call       System.Collections.Generic.List`1<Bomb> GameplayState::get_Bombs()
+IL_0041: callvirt   virtual System.Int32 System.Collections.Generic.List`1<Bomb>::get_Count()
+IL_0046: ldc.i4.0
+IL_0047: ble =>     Label3
+IL_004C: ldarg.0
+IL_004D: call       System.Collections.Generic.List`1<Bomb> GameplayState::get_Bombs()
+IL_0052: ldc.i4.0
+IL_0053: callvirt   virtual Bomb System.Collections.Generic.List`1<Bomb>::get_Item(System.Int32 index)
+IL_0058: br =>      Label4
+IL_005D: Label2
+IL_005D: Label3
+IL_005D: ldnull
+IL_005E: // end original
+IL_005E: Label4
+IL_005E: stloc      0 (Bomb)
+IL_0062: Label0
+IL_0062: ldloc      0 (Bomb)
+IL_0066: ret
+DONE
+
+### Patch: System.Collections.Generic.List`1<Bomb> GameplayState::get_Bombs()
+### Replacement: static System.Collections.Generic.List`1<Bomb> GameplayState::get_Bombs_Patch1(GameplayState this)
+IL_0000: Local var 0: System.Collections.Generic.List`1<Bomb>
+IL_0000: Local var 1: System.Boolean
+IL_0000: ldnull
+IL_0001: stloc      0 (System.Collections.Generic.List`1[Bomb])
+IL_0005: ldc.i4     0
+IL_000A: stloc      1 (System.Boolean)
+IL_000E: ldc.i4.1
+IL_000F: stloc      1 (System.Boolean)
+IL_0013: ldloc      1 (System.Boolean)
+IL_0017: brfalse.s => Label1
+IL_0019: ldloca     0 (System.Collections.Generic.List`1[Bomb])
+IL_001D: call       static System.Boolean GameplayStatePatches::Prefix(System.Collections.Generic.List`1& __result)
+IL_0022: stloc      1 (System.Boolean)
+IL_0026: nop
+IL_0027: ldloc      1 (System.Boolean)
+IL_002B: brfalse => Label0
+IL_0030: // start original
+IL_0030: ldarg.0
+IL_0031: ldfld      System.Collections.Generic.List`1<Bomb> GameplayState::<Bombs>k__BackingField
+IL_0036: // end original
+IL_0036: stloc      0 (System.Collections.Generic.List`1[Bomb])
+IL_003A: Label0
+IL_003A: ldloc      0 (System.Collections.Generic.List`1[Bomb])
+IL_003E: ret
+DONE
+
+### Patch: System.Void BombGenerator::InstantiateComponent(BombFace selectedFace, BombComponent bombComponentPrefab, Assets.Scripts.Missions.GeneratorSetting settings)
+### Replacement: static System.Void BombGenerator::InstantiateComponent_Patch1(BombGenerator this, BombFace selectedFace, BombComponent bombComponentPrefab, Assets.Scripts.Missions.GeneratorSetting settings)
+IL_0000: Local var 0: System.Collections.Generic.List`1<BombFace/ComponentSpawnPoint>
+IL_0000: Local var 1: BombFace/ComponentSpawnPoint
+IL_0000: Local var 2: UnityEngine.Transform
+IL_0000: Local var 3: UnityEngine.GameObject
+IL_0000: Local var 4: BombComponent
+IL_0000: Local var 5: NeedyComponent
+IL_0000: Local var 6: Selectable
+IL_0000: Local var 7: Selectable
+IL_0000: Local var 8: System.Int32
+IL_0000: Local var 9: System.Boolean
+IL_0000: ldc.i4     0
+IL_0005: stloc      9 (System.Boolean)
+IL_0009: ldc.i4.1
+IL_000A: stloc      9 (System.Boolean)
+IL_000E: ldloc      9 (System.Boolean)
+IL_0012: brfalse.s => Label1
+IL_0014: ldarg.0
+IL_0015: ldarg      1
+IL_0019: ldarg      2
+IL_001D: ldarg      3
+IL_0021: call       static System.Boolean GeneratorPatches::Prefix(BombGenerator __instance, BombFace selectedFace, BombComponent bombComponentPrefab, Assets.Scripts.Missions.GeneratorSetting settings)
+IL_0026: stloc      9 (System.Boolean)
+IL_002A: nop
+IL_002B: ldloc      9 (System.Boolean)
+IL_002F: brfalse => Label0
+IL_0034: // start original
+IL_0034: ldarg.1
+IL_0035: ldfld      System.Collections.Generic.List`1<ComponentSpawnPoint> BombFace::ComponentSpawnPoints
+IL_003A: stloc.0
+IL_003B: ldloc.0
+IL_003C: ldarg.0
+IL_003D: ldfld      System.Random BombGenerator::rand
+IL_0042: ldc.i4.0
+IL_0043: ldloc.0
+IL_0044: callvirt   virtual System.Int32 System.Collections.Generic.List`1<ComponentSpawnPoint>::get_Count()
+IL_0049: callvirt   virtual System.Int32 System.Random::Next(System.Int32 minValue, System.Int32 maxValue)
+IL_004E: callvirt   virtual ComponentSpawnPoint System.Collections.Generic.List`1<ComponentSpawnPoint>::get_Item(System.Int32 index)
+IL_0053: stloc.1
+IL_0054: ldarg.2
+IL_0055: ldfld      Assets.Scripts.Missions.ComponentTypeEnum BombComponent::ComponentType
+IL_005A: ldc.i4.1
+IL_005B: bne.un =>  Label2
+IL_0060: ldarg.1
+IL_0061: ldfld      System.Collections.Generic.List`1<ComponentSpawnPoint> BombFace::TimerSpawnPoints
+IL_0066: ldarg.0
+IL_0067: ldfld      System.Random BombGenerator::rand
+IL_006C: ldc.i4.0
+IL_006D: ldarg.1
+IL_006E: ldfld      System.Collections.Generic.List`1<ComponentSpawnPoint> BombFace::TimerSpawnPoints
+IL_0073: callvirt   virtual System.Int32 System.Collections.Generic.List`1<ComponentSpawnPoint>::get_Count()
+IL_0078: callvirt   virtual System.Int32 System.Random::Next(System.Int32 minValue, System.Int32 maxValue)
+IL_007D: callvirt   virtual ComponentSpawnPoint System.Collections.Generic.List`1<ComponentSpawnPoint>::get_Item(System.Int32 index)
+IL_0082: stloc.1
+IL_0083: Label2
+IL_0083: ldloca.s   1 (BombFace+ComponentSpawnPoint)
+IL_0085: ldfld      UnityEngine.Transform ComponentSpawnPoint::Transform
+IL_008A: stloc.2
+IL_008B: ldarg.2
+IL_008C: callvirt   UnityEngine.GameObject UnityEngine.Component::get_gameObject()
+IL_0091: ldloc.2
+IL_0092: callvirt   UnityEngine.Vector3 UnityEngine.Transform::get_position()
+IL_0097: ldloc.2
+IL_0098: callvirt   UnityEngine.Quaternion UnityEngine.Transform::get_rotation()
+IL_009D: call       static UnityEngine.GameObject UnityEngine.Object::Instantiate(UnityEngine.GameObject original, UnityEngine.Vector3 position, UnityEngine.Quaternion rotation)
+IL_00A2: stloc.3
+IL_00A3: ldloc.3
+IL_00A4: callvirt   UnityEngine.Transform UnityEngine.GameObject::get_transform()
+IL_00A9: ldarg.0
+IL_00AA: ldfld      Bomb BombGenerator::bomb
+IL_00AF: ldfld      UnityEngine.Transform Bomb::visualTransform
+IL_00B4: callvirt   System.Void UnityEngine.Transform::set_parent(UnityEngine.Transform value)
+IL_00B9: ldloc.3
+IL_00BA: callvirt   UnityEngine.Transform UnityEngine.GameObject::get_transform()
+IL_00BF: call       static UnityEngine.Vector3 UnityEngine.Vector3::get_one()
+IL_00C4: callvirt   System.Void UnityEngine.Transform::set_localScale(UnityEngine.Vector3 value)
+IL_00C9: ldloc.3
+IL_00CA: callvirt   BombComponent UnityEngine.GameObject::GetComponent()
+IL_00CF: stloc.s    4 (BombComponent)
+IL_00D1: ldarg.0
+IL_00D2: ldfld      Bomb BombGenerator::bomb
+IL_00D7: ldfld      System.Collections.Generic.List`1<BombComponent> Bomb::BombComponents
+IL_00DC: ldloc.s    4 (BombComponent)
+IL_00DE: callvirt   virtual System.Void System.Collections.Generic.List`1<BombComponent>::Add(BombComponent item)
+IL_00E3: ldloc.s    4 (BombComponent)
+IL_00E5: ldfld      System.Boolean BombComponent::RequiresDeepBackingGeometry
+IL_00EA: brfalse => Label3
+IL_00EF: ldloca.s   1 (BombFace+ComponentSpawnPoint)
+IL_00F1: ldfld      BombComponentBacking ComponentSpawnPoint::Backing
+IL_00F6: ldnull
+IL_00F7: call       static System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object x, UnityEngine.Object y)
+IL_00FC: brfalse => Label4
+IL_0101: ldloca.s   1 (BombFace+ComponentSpawnPoint)
+IL_0103: ldfld      BombComponentBacking ComponentSpawnPoint::Backing
+IL_0108: ldc.i4.1
+IL_0109: callvirt   System.Void BombComponentBacking::set_CurrentBacking(BackingType value)
+IL_010E: Label3
+IL_010E: Label4
+IL_010E: ldloc.3
+IL_010F: callvirt   NeedyComponent UnityEngine.GameObject::GetComponent()
+IL_0114: stloc.s    5 (NeedyComponent)
+IL_0116: ldloc.s    5 (NeedyComponent)
+IL_0118: ldnull
+IL_0119: call       static System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object x, UnityEngine.Object y)
+IL_011E: brfalse => Label5
+IL_0123: ldloc.s    5 (NeedyComponent)
+IL_0125: ldarg.3
+IL_0126: ldfld      System.Int32 Assets.Scripts.Missions.GeneratorSetting::TimeBeforeNeedyActivation
+IL_012B: stfld      System.Int32 NeedyComponent::SecondsBeforeForcedActivation
+IL_0130: Label5
+IL_0130: ldloc.s    4 (BombComponent)
+IL_0132: callvirt   Selectable UnityEngine.Component::GetComponent()
+IL_0137: stloc.s    6 (Selectable)
+IL_0139: ldloc.s    6 (Selectable)
+IL_013B: ldnull
+IL_013C: call       static System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object x, UnityEngine.Object y)
+IL_0141: brfalse => Label6
+IL_0146: ldarg.1
+IL_0147: callvirt   Selectable UnityEngine.Component::GetComponent()
+IL_014C: stloc.s    7 (Selectable)
+IL_014E: ldloc.s    7 (Selectable)
+IL_0150: ldfld      Selectable[] Selectable::Children
+IL_0155: brfalse => Label7
+IL_015A: ldloc.s    7 (Selectable)
+IL_015C: ldfld      Selectable[] Selectable::Children
+IL_0161: ldlen
+IL_0162: conv.i4
+IL_0163: brtrue =>  Label8
+IL_0168: Label7
+IL_0168: ldloc.s    7 (Selectable)
+IL_016A: ldarg.1
+IL_016B: ldfld      System.Collections.Generic.List`1<ComponentSpawnPoint> BombFace::ComponentSpawnPoints
+IL_0170: callvirt   virtual System.Int32 System.Collections.Generic.List`1<ComponentSpawnPoint>::get_Count()
+IL_0175: ldc.i4.1
+IL_0176: add
+IL_0177: newarr     Selectable
+IL_017C: stfld      Selectable[] Selectable::Children
+IL_0181: Label8
+IL_0181: ldloca.s   1 (BombFace+ComponentSpawnPoint)
+IL_0183: ldfld      System.Int32 ComponentSpawnPoint::SelectableIndex
+IL_0188: stloc.s    8 (System.Int32)
+IL_018A: ldloc.s    7 (Selectable)
+IL_018C: ldfld      Selectable[] Selectable::Children
+IL_0191: ldloc.s    8 (System.Int32)
+IL_0193: ldloc.s    6 (Selectable)
+IL_0195: stelem.ref
+IL_0196: ldloc.s    6 (Selectable)
+IL_0198: ldloc.s    7 (Selectable)
+IL_019A: stfld      Selectable Selectable::Parent
+IL_019F: Label6
+IL_019F: ldloc.0
+IL_01A0: ldloc.1
+IL_01A1: callvirt   virtual System.Boolean System.Collections.Generic.List`1<ComponentSpawnPoint>::Remove(ComponentSpawnPoint item)
+IL_01A6: pop
+IL_01A7: ldloc.0
+IL_01A8: callvirt   virtual System.Int32 System.Collections.Generic.List`1<ComponentSpawnPoint>::get_Count()
+IL_01AD: brtrue =>  Label9
+IL_01B2: ldarg.0
+IL_01B3: ldfld      System.Collections.Generic.List`1<BombFace> BombGenerator::validBombFaces
+IL_01B8: ldarg.1
+IL_01B9: callvirt   virtual System.Boolean System.Collections.Generic.List`1<BombFace>::Remove(BombFace item)
+IL_01BE: pop
+IL_01BF: Label9
+IL_01BF: ldloc.s    4 (BombComponent)
+IL_01C1: dup
+IL_01C2: ldfld      StrikeEvent BombComponent::OnStrike
+IL_01C7: ldarg.0
+IL_01C8: ldfld      Bomb BombGenerator::bomb
+IL_01CD: ldftn      System.Boolean Bomb::OnStrike(BombComponent bombComponent)
+IL_01D3: newobj     System.Void StrikeEvent::.ctor(System.Object object, System.IntPtr method)
+IL_01D8: call       static System.Delegate System.Delegate::Combine(System.Delegate a, System.Delegate b)
+IL_01DD: castclass  StrikeEvent
+IL_01E2: stfld      StrikeEvent BombComponent::OnStrike
+IL_01E7: ldloc.s    4 (BombComponent)
+IL_01E9: dup
+IL_01EA: ldfld      PassEvent BombComponent::OnPass
+IL_01EF: ldarg.0
+IL_01F0: ldfld      Bomb BombGenerator::bomb
+IL_01F5: ldftn      System.Boolean Bomb::OnPass(BombComponent bombComponent)
+IL_01FB: newobj     System.Void PassEvent::.ctor(System.Object object, System.IntPtr method)
+IL_0200: call       static System.Delegate System.Delegate::Combine(System.Delegate a, System.Delegate b)
+IL_0205: castclass  PassEvent
+IL_020A: stfld      PassEvent BombComponent::OnPass
+IL_020F: ldloc.s    4 (BombComponent)
+IL_0211: ldarg.0
+IL_0212: ldfld      Bomb BombGenerator::bomb
+IL_0217: stfld      Bomb BombComponent::Bomb
+IL_021C: ldsfld     log4net.ILog BombGenerator::logger
+IL_0221: ldstr      "Instantiated {0} on face {1}, spawn index {2}"
+IL_0226: ldarg.2
+IL_0227: callvirt   System.String UnityEngine.Object::get_name()
+IL_022C: ldarg.1
+IL_022D: callvirt   System.String UnityEngine.Object::get_name()
+IL_0232: ldloca.s   1 (BombFace+ComponentSpawnPoint)
+IL_0234: ldfld      System.Int32 ComponentSpawnPoint::SelectableIndex
+IL_0239: box        System.Int32
+IL_023E: callvirt   abstract virtual System.Void log4net.ILog::DebugFormat(System.String format, System.Object arg0, System.Object arg1, System.Object arg2)
+IL_0243: // end original
+IL_0243: Label0
+IL_0243: ret
+DONE
+
+### Patch: System.Void Bomb::SetTotalTime(System.Single secondsToSolve)
+### Replacement: static System.Void Bomb::SetTotalTime_Patch1(Bomb this, System.Single secondsToSolve)
+IL_0000: ldarg.0
+IL_0001: call       static System.Void GeneratorPatches::Prefix(Bomb __instance)
+IL_0006: // start original
+IL_0006: ldarg.0
+IL_0007: call       TimerComponent Bomb::GetTimer()
+IL_000C: ldarg.1
+IL_000D: callvirt   System.Void TimerComponent::SetTimeRemaing(System.Single time)
+IL_0012: ldarg.0
+IL_0013: ldarg.1
+IL_0014: stfld      System.Single Bomb::TotalTime
+IL_0019: // end original
+IL_0019: ret
+DONE
+
+### Harmony id=samfundev.tweaks.LogfileViewerHotkey, version=2.0.1.0, location=C:\Program Files (x86)\Steam\steamapps\common\data-0000020EFDDFE050
+### Started from static System.Boolean TweaksAssembly.Patching.Patching::PatchClasses(System.String id, HarmonyLib.Harmony& instance, System.Type[] types), location C:\Program Files (x86)\Steam\steamapps\common\data-0000020EFDEADE60
+### At 2020-11-06 06.33.38
+AccessTools.TypeByName: Could not find type named LogfileUploader
+AccessTools.DeclaredMethod: type is null
